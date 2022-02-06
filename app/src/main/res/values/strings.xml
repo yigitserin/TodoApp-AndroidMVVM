@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">TodoApp</string>
+
+    <string name="ui_login_header_text">Please sign in to use the application</string>
+    <string name="ui_login_email_hint">E-mail</string>
+    <string name="ui_login_password_hint">Password</string>
+    <string name="ui_login_button_text">Sign in</string>
+    <string name="ui_login_validation_error">Invalid e-mail or password.</string>
+    <string name="ui_login_response_error">Wrong e-mail or password.</string>
+    <string name="ui_list_create_button_content_description">Create new reminder</string>
+    <string name="ui_addedit_title_hint">Reminder Title</string>
+    <string name="ui_addedit_description_hint">Reminder Description</string>
+    <string name="ui_addedit_button_save">Save</string>
+    <string name="ui_addedit_button_delete">Delete</string>
+    <string name="ui_addedit_button_select_date">Select Date</string>
+    <string name="ui_addedit_save_error">Save failed</string>
+    <string name="ui_addedit_save_success">Save success</string>
+    <string name="ui_addedit_delete_success">Delete success</string>
+    <string name="ui_addedit_radio_daily">Remind Daily</string>
+    <string name="ui_addedit_radio_weekly">Remind Weekly</string>
 </resources>
