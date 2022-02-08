@@ -1,7 +1,6 @@
 package com.yigitserin.todoapp.ui.addedit
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yigitserin.todoapp.R
 import com.yigitserin.todoapp.data.entity.db.Note
@@ -20,11 +19,9 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class AddEditViewModel @Inject constructor(
-    private val listRepository: ListRepository,
-    private val alarmScheduler: AlarmScheduler,
-    application: Application
-): AndroidViewModel(application) {
+class AddEditViewModel @Inject constructor(private var listRepository: ListRepository): ViewModel() {
+
+    @Inject lateinit var alarmScheduler: AlarmScheduler
 
     private val viewModelState: MutableStateFlow<AddEditViewUIState> = MutableStateFlow(AddEditViewUIState(Calendar.getInstance().time.time, null))
     internal val uiState: StateFlow<AddEditViewUIState> = viewModelState
