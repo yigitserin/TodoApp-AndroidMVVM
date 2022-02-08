@@ -13,12 +13,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ListFragment @Inject constructor(
-    private val listAdapter: ListAdapter
-) : Fragment() {
+class ListFragment @Inject constructor() : Fragment() {
 
     private val listViewModel: ListViewModel by viewModels()
     private lateinit var binding: FragmentListBinding
+    private val listAdapter = ListAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View{
         binding = FragmentListBinding.inflate(inflater, container, false)

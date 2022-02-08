@@ -16,12 +16,13 @@ import androidx.navigation.fragment.navArgs
 import com.yigitserin.todoapp.data.entity.db.Note
 import com.yigitserin.todoapp.data.entity.db.NoteType
 import com.yigitserin.todoapp.databinding.FragmentAddeditBinding
-import com.yigitserin.todoapp.utils.formatToServerDateTimeDefaults
+import com.yigitserin.todoapp.utils.prettyDate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class AddEditFragment @Inject constructor() : Fragment() {
@@ -62,7 +63,7 @@ class AddEditFragment @Inject constructor() : Fragment() {
                 state.note?.let { note ->
                     initializeViewsForEdit(note)
                 } ?:run{
-                    binding.btnSelectDate.text = Date(state.date ?: Calendar.getInstance().time.time).formatToServerDateTimeDefaults()
+                    binding.btnSelectDate.text = Date(state.date ?: Calendar.getInstance().time.time).prettyDate()
                     binding.btnDelete.visibility = View.GONE
                 }
             }
@@ -84,7 +85,7 @@ class AddEditFragment @Inject constructor() : Fragment() {
             }
         }
 
-        binding.btnSelectDate.text = Date(note.date).formatToServerDateTimeDefaults()
+        binding.btnSelectDate.text = Date(note.date).prettyDate()
         binding.btnDelete.visibility = View.VISIBLE
     }
 

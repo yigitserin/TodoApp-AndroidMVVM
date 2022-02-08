@@ -9,12 +9,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.yigitserin.todoapp.R
 import com.yigitserin.todoapp.data.entity.db.Note
+import com.yigitserin.todoapp.data.entity.db.NoteType
+import com.yigitserin.todoapp.utils.prettyDate
+import java.util.*
 import javax.inject.Inject
 
 class ListAdapter @Inject constructor(): RecyclerView.Adapter<ListAdapter.ShoppingItemViewHolder>(){
 
     class ShoppingItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val tvTodoTitle: TextView = itemView.findViewById(R.id.tvTodoTitle)
+        val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
+        val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
+        val tvDate: TextView = itemView.findViewById(R.id.tvDate)
+        val tvType: TextView = itemView.findViewById(R.id.tvType)
     }
 
     private val diffCallback = object : DiffUtil.ItemCallback<Note>() {
@@ -41,7 +47,14 @@ class ListAdapter @Inject constructor(): RecyclerView.Adapter<ListAdapter.Shoppi
 
     override fun onBindViewHolder(holder: ShoppingItemViewHolder, position: Int) {
         val note = todoItems[position]
-        holder.tvTodoTitle.text = todoItems[position].title
+        holder.tvTitle.text = todoItems[position].title
+        holder.tvDescription.text = todoItems[position].description
+        holder.tvDate.text = Date(todoItems[position].date).prettyDate()
+        holder.tvType.text = when(todoItems[position].type){
+            NoteType.DAILY -> holder.itemView.context.getString(R.string.ui_list_type_daily)
+            NoteType.WEEKLY -> holder.itemView.context.getString(R.string.ui_list_type_weekly)
+        }
+
         holder.itemView.setOnClickListener {
             listener?.onClick(note)
         }

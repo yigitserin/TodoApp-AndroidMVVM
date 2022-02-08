@@ -12,6 +12,8 @@ import com.yigitserin.todoapp.data.repository.DefaultListRepository
 import com.yigitserin.todoapp.data.repository.DefaultLoginRepository
 import com.yigitserin.todoapp.data.repository.ListRepository
 import com.yigitserin.todoapp.data.repository.LoginRepository
+import com.yigitserin.todoapp.service.AlarmScheduler
+import com.yigitserin.todoapp.service.NotificationService
 import com.yigitserin.todoapp.utils.Validator
 import dagger.Module
 import dagger.Provides
@@ -23,11 +25,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
-
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun provideNotificationService(@ApplicationContext context: Context) = NotificationService(context)
+
+    @Singleton
+    @Provides
+    fun provideAlarmScheduler(@ApplicationContext context: Context) = AlarmScheduler(context)
 
     @Singleton
     @Provides
